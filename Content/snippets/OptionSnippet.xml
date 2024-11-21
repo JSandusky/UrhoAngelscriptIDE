@@ -1,0 +1,16 @@
+<snippet name="Test Options" extension=".as">
+    <input name="Test Input" key="testin" />
+    <option name="Include Second" key="second" />
+    <code><![CDATA[
+void {{testin}}() {
+    insert some cool code!
+}
+]]>
+</code>
+<code requires="second"><![CDATA[
+void Start() {
+    insert some cool code!
+}
+]]> 
+</code>
+</snippet>

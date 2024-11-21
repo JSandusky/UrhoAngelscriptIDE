@@ -1,0 +1,52 @@
+﻿<mui:ModernDialog x:Class="Debugger.IDE.IDESettingsDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Develop Settings" Height="300" Width="300">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Run Exe" VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Path to the executable to run as a 'Release mode' command"/>
+                <TextBox Name="txtRunExe" MinWidth="160" Text="{Binding RunExe}" Margin="5"/>
+                <Button Content="Browse" Tag="run" Click="Button_Click" Style="{StaticResource StyledButton}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Run Params" VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Params to attach to run exe invocation"/>
+                <TextBox Name="txtRunParams" MinWidth="160" Text="{Binding RunParams}" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Debug Exe" VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Path to the executable to run as a 'Debug mode' command"/>
+                <TextBox Name="txtDebugExe" MinWidth="160" Text="{Binding DebugExe}" Margin="5"/>
+                <Button Content="Browse" Tag="debug" Click="Button_Click" Style="{StaticResource StyledButton}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Debug Params" VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Params to attach to debug exe invocation"/>
+                <TextBox Name="txtDebugParams" MinWidth="160" Text="{Binding DebugParams}" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Path to your Urho3D source-tree bin directory, used for compiler #includes" >
+                    <TextBlock TextDecorations="Underline">Source Tree</TextBlock>
+                </Label>
+                <TextBox Name="txtSourceTree" MinWidth="160" Text="{Binding SourceTree}" Margin="5" />
+                <Button Content="Browse" Tag="sourcetree" Click="Button_Click" Style="{StaticResource StyledButton}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Script file to be classified as the 'main' file for compilation" >
+                    <TextBlock TextDecorations="Underline">Compile File</TextBlock>
+                </Label>
+                <TextBox Name="txtCompileFile" MinWidth="160" Text="{Binding CompilerPath}" Margin="5"/>
+                <Button Content="Browse" Tag="compile" Click="Button_Click" Style="{StaticResource StyledButton}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Compiler" VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Compiler plugin to use for compilation"/>
+                <ComboBox Name="comboCompile" MinWidth="160" SelectedValue="{Binding Compiler}" DisplayMemberPath="Name" SelectedValuePath="Value" Margin="5"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalAlignment="Center" Margin="5" MinWidth="85" ToolTip="Directories to be given to compiler as include directories">
+                    <TextBlock TextDecorations="Underline">Include Paths</TextBlock>
+                </Label>
+                <TextBox Name="txtIncludePaths" MinWidth="160" Text="{Binding IncludePaths}" Margin="5" ToolTip="Use semi-colons ; to seperate multiple paths"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</mui:ModernDialog>

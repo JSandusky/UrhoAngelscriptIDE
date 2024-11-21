@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TechniqueSchema"
+    targetNamespace="http://tempuri.org/TechniqueSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/TechniqueSchema.xsd"
+    xmlns:mstns="http://tempuri.org/TechniqueSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:simpleType name="lighting_mode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="unlit"/>
+      <xs:enumeration value="pervertex"/>
+      <xs:enumeration value="perpixel"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="blend_mode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="replace"/>
+      <xs:enumeration value="add"/>
+      <xs:enumeration value="multiply"/>
+      <xs:enumeration value="alpha"/>
+      <xs:enumeration value="addalpha"/>
+      <xs:enumeration value="premulalpha"/>
+      <xs:enumeration value="invdestalpha"/>
+      <xs:enumeration value="subtract"/>
+      <xs:enumeration value="subtractalpha"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="depth_mode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="always"/>
+      <xs:enumeration value="equal"/>
+      <xs:enumeration value="less"/>
+      <xs:enumeration value="lessequal"/>
+      <xs:enumeration value="greater"/>
+      <xs:enumeration value="greaterequal"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  
+  <xs:complexType name="pass">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="sm3" type="xs:boolean" default="false" />
+    <xs:attribute name="desktop" type="xs:boolean" default="true"/>
+    <xs:attribute name="vs" type="xs:string" use="required"/>
+    <xs:attribute name="ps" type="xs:string" use="required"/>
+    <xs:attribute name="vsdefines" type="xs:string"/>
+    <xs:attribute name="psdefines" type="xs:string"/>
+    <xs:attribute name="lighting" type="lighting_mode" default="unlit" />
+    <xs:attribute name="blend" type="blend_mode" default="replace" />
+    <xs:attribute name="depthtest" type="depth_mode" default="always" />
+    <xs:attribute name="depthwrite" type="xs:boolean" default="true" />
+    <xs:attribute name="alphamask" type="xs:boolean" default="false" />
+  </xs:complexType>
+  
+  
+  <xs:element name="technique">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="pass" type="pass" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      
+      <!-- attributes -->
+      <xs:attribute name="vs" type="xs:string" />
+      <xs:attribute name="ps" type="xs:string" />
+      <xs:attribute name="vsdefines" type="xs:string" />
+      <xs:attribute name="psdefines" type="xs:string" />
+      <xs:attribute name="sm3" type="xs:boolean"/>
+      <xs:attribute name="desktop" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

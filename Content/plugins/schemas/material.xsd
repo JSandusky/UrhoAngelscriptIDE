@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MaterialSchema"
+    elementFormDefault="qualified"
+    xmlns:mstns="http://tempuri.org/MaterialSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:simpleType name="TextureType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="diffuse" />
+      <xs:enumeration value="normal" />
+      <xs:enumeration value="specular" />
+      <xs:enumeration value="emissive" />
+      <xs:enumeration value="environment" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="CullType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="cw" />
+      <xs:enumeration value="ccw" />
+      <xs:enumeration value="none" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="TechniqueRef">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="quality" type="xs:float" use="optional" />
+    <xs:attribute name="loddistance" type="xs:float" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="TextureRef">
+    <xs:attribute name="unit" type="TextureType" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="ParamRef">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="DepthBiasRef">
+    <xs:attribute name="constant" type="xs:float" use="optional" />
+    <xs:attribute name="slopescaled" type="xs:float" use="optional" />
+  </xs:complexType>
+  
+  <xs:element name="material">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="technique" type="TechniqueRef" minOccurs="1" maxOccurs="1" />
+        <xs:element name="texture" type="TextureRef" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="parameter" type="ParamRef" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="cull" type="CullType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="shadowcull" type="CullType" minOccurs="0" maxOccurs="1" />
+        <xs:element name="depthbias" type="DepthBiasRef" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

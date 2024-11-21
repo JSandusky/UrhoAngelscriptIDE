@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EffectSchema"
+    elementFormDefault="qualified"
+    xmlns:mstns="http://tempuri.org/EffectSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:complexType name="ToggleRef">
+    <xs:attribute name="enable" type="xs:boolean" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="MinMaxFloatRef">
+    <xs:attribute name="min" type="xs:float" use="required" />
+    <xs:attribute name="max" type="xs:float" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="MinMaxStringRef">
+    <xs:attribute name="min" type="xs:string" use="required" />
+    <xs:attribute name="max" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:simpleType name="EmitterType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="sphere" />
+      <xs:enumeration value="box" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ValueRef">
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="ColorFadeRef">
+    <xs:attribute name="color" type="xs:string" use="required"/>
+    <xs:attribute name="time" type="xs:float" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="TexAnimRef">
+    <xs:attribute name="uv" type="xs:string" use="required" />
+    <xs:attribute name="time" type="xs:float" use="required" />
+  </xs:complexType>
+  
+  <xs:element name="particleeffect">
+    <xs:complexType>
+      <xs:sequence>
+
+        <xs:element name="material" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:attribute name="name" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="numparticles" type="ValueRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="updateinvisible" type="ToggleRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="relative" type="ToggleRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="scaled" type="ToggleRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="sorted" type="ToggleRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="emittertype" type="EmitterType" minOccurs="1" maxOccurs="1" />
+        <xs:element name="emittersize" type="ValueRef" minOccurs="1" maxOccurs="1" />
+        <xs:element name="emitterradius" type="ValueRef" minOccurs="1" maxOccurs="1" />
+        <xs:element name="direction" type="MinMaxStringRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="constantforce" type="ValueRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="dampingforce" type="ValueRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="activetime" type="ValueRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="inactivetime" type="ValueRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="interval" type="MinMaxFloatRef" minOccurs="1" maxOccurs="1" />
+        <xs:element name="emissionrate" type="MinMaxFloatRef" minOccurs="1" maxOccurs="1" />
+        <xs:element name="particlesize" type="MinMaxStringRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="timetolive" type="MinMaxFloatRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="velocity" type="MinMaxFloatRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="rotation" type="MinMaxFloatRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="rotationspeed" type="MinMaxFloatRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="sizedelta" type="MinMaxFloatRef" minOccurs="0" maxOccurs="1" />
+        <xs:element name="color" type="ValueRef" minOccurs="1" maxOccurs="1" />
+
+        <xs:element name="colorfade" type="ColorFadeRef" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="texanim" type="TexAnimRef" minOccurs="0" maxOccurs="unbounded" />
+        
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

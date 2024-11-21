@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="RenderPathSchema"
+    targetNamespace="http://tempuri.org/RenderPathSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/RenderPathSchema.xsd"
+    xmlns:mstns="http://tempuri.org/RenderPathSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:simpleType name="RenderSorting">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="fronttoback" />
+      <xs:enumeration value="backtofront" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:simpleType name="RenderTargetFormat">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="rgb" />
+      <xs:enumeration value="rgba" />
+      <xs:enumeration value="r32f" />
+      <xs:enumeration value="rgba16" />
+      <xs:enumeration value="rgba16f" />
+      <xs:enumeration value="rgb32f" />
+      <xs:enumeration value="rg16" />
+      <xs:enumeration value="rg16f" />
+      <xs:enumeration value="rg32f" />
+      <xs:enumeration value="lineardepth" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="RenderTargetRef">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="tag" type="xs:string" use="optional" />
+    <xs:attribute name="enabled" type="xs:boolean" default="true" />
+    <xs:attribute name="size" type="xs:string" use="optional" />
+    <xs:attribute name="sizedivisor" type="xs:string" use="optional" />
+    <xs:attribute name="sizemultiplier" type="xs:string" use="optional" />
+    <xs:attribute name="format" type="RenderTargetFormat" use="required" />
+    <xs:attribute name="filter" type="xs:boolean" use="optional"/>
+    <xs:attribute name="srgb" type="xs:boolean" default="false" />
+    <xs:attribute name="persistent" type="xs:boolean" default="true" />
+  </xs:complexType>
+
+  <xs:complexType name="OutputRef">
+    <xs:attribute name="index" type="xs:int" use="required"/>
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="TextureRef">
+    <xs:attribute name="unit" type="xs:string" use="required" />
+    <xs:attribute name="name" type="xs:string" use="required" />
+  </xs:complexType>
+  
+  <xs:complexType name="ParamRef">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+  </xs:complexType>
+  
+  <xs:complexType name="CommandRef">
+    <xs:sequence></xs:sequence>
+    <xs:attribute name="type" type="xs:string" use="required" />
+    <xs:attribute name="output" type="xs:string" use="required" />
+    <xs:attribute name="pass" type="xs:string" use="optional" />
+    <xs:attribute name="enabled" type="xs:boolean" use="optional" />
+    <xs:attribute name="clearcolor" type="xs:string" use="optional" />
+    <xs:attribute name="cleardepth" type="xs:float" use="optional" />
+    <xs:attribute name="clearstencil" type="xs:float" use="optional" />
+    <xs:attribute name="marktostencil" type="xs:boolean" use="optional" />
+    <xs:attribute name="vertexlights" type="xs:boolean" use="optional" />
+    <xs:attribute name="uselitbase" type="xs:boolean" use="optional" />
+    <xs:attribute name="sort" type="RenderSorting" use="optional" />
+    <xs:attribute name="metadata" type="xs:string" use="optional" />
+
+    <xs:attribute name="ps" type="xs:string" use="optional" />
+    <xs:attribute name="vs" type="xs:string" use="optional" />
+    <xs:attribute name="psdefines" type="xs:string" use="optional" />
+    <xs:attribute name="vsdefines" type="xs:string" use="optional" />
+  </xs:complexType>
+  
+  <xs:element name="renderpath">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="rendertarget" type="RenderTargetRef" minOccurs="0" maxOccurs="unbounded" />
+        <xs:element name="command" type="CommandRef" minOccurs="1" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

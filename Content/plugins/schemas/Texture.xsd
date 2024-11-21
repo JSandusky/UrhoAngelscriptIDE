@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Texture2DSchema"
+    elementFormDefault="qualified"
+    xmlns:mstns="http://tempuri.org/Texture2DSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:simpleType name="UVCoord">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="u" />
+      <xs:enumeration value="v" />
+      <xs:enumeration value="w" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="WrapMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="wrap" />
+      <xs:enumeration value="mirror" />
+      <xs:enumeration value="clamp" />
+      <xs:enumeration value="border" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FilterMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="nearest" />
+      <xs:enumeration value="bilinear" />
+      <xs:enumeration value="trilinear" />
+      <xs:enumeration value="anisotropic" />
+      <xs:enumeration value="default" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="address">
+    <xs:attribute name="coord" type="UVCoord" use="required"/>
+    <xs:attribute name="mode" type="WrapMode" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="Color">
+    <xs:attribute name="color" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="Quality">
+    <xs:attribute name="low" type="xs:float" use="optional"/>
+    <xs:attribute name="medium" type="xs:float" use="optional"/>
+    <xs:attribute name="high" type="xs:float" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="Mipmap">
+    <xs:attribute name="enable" type="xs:boolean" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="SRGB">
+    <xs:attribute name="enable" type="xs:boolean" use="required"/>
+  </xs:complexType>
+  
+  <xs:element name="texture">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="address" type="address" minOccurs="0" maxOccurs="3" />
+        <xs:element name="border" type="Color" minOccurs="0" maxOccurs="1" />
+        <xs:element name="mipmap" type="Mipmap" minOccurs="0" maxOccurs="1" />
+        <xs:element name="quality" type="Quality" minOccurs="0" maxOccurs="1" />
+        <xs:element name="srgb" type="SRGB" minOccurs="0" maxOccurs="1" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>

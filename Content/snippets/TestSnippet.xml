@@ -1,0 +1,9 @@
+<snippet name="Test Snippet" extension=".as">
+    <input name="Test Input" key="testin" />
+<code><![CDATA[
+public void {{testin}}() {
+    insert some cool code!
+}
+]]>
+</code>
+</snippet>

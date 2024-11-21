@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<help>
+  <section name="Setup">
+    <p>[b]Getting asDevelop Configured[/b]</p>
+    <p>asDevelop requires a little bit of setup to be used for your purposes.</p>
+    <p>[b]1)[/b] You need a script API dump in the "bin" folder (resembles a C++ header).</p>
+    <p>[b]2)[/b] You need a compiler plugin if you want to compile.</p>
+    <p>[b]3)[/b] To use the debugger you need to have implemented the asPEEK daemon in your software.</p>
+    <h>[b]API Dump[/b]</h>
+    <p>The expected API dump resembles a C++ header file. For Urho3D, the "Docs" folder of your Urho3D checkout contains a file called "AngelscriptAPI.h" which is in the correct format.</p>
+    <p>Copy this "AngelscriptAPI.h" file from your checkout to the "bin" folder where the "asDevelop.exe" executable is located. If you have made modifications to Urho3D use the ScriptCompiler tool of Urho3D to generate a new API dump.</p>
+    <h>[b]Compiler Plugin[/b]</h>
+    <p>asDevelop builds an Urho3D compiler plugin by default and it is an included option in the installer.</p>
+    <p>To use the Urho3D compiler plugin you just need to copy "ScriptCompiler.exe" from your Urho3D "Tools" folder in bin. This manual step gaurantees that compilation is performed in regards to any custom modifications you have made.</p>
+  </section>
+  <section name="Create a Project">
+    <p>At the application launch screen click the "New Project" button.</p>
+    <img>HelpCreate_NewProject.png</img>
+    <p>You'll be prompted to select a directory that will serve as the project root. For Urho3D projects use the "bin" folder of your Urho3D source-tree.</p>
+  </section>
+  <section name="IDE Basics">
+    <p>The IDE uses a fixed panel layout with several tabs.</p>
+    <p>On the left you have your project and "context" tabs. The center area is dedicated for file editors. On the right is a space for plugin provided tabs. At the bottom right are diagnostics and utilities.</p>
+    <p>[u]The buttons on the left from top to bottom:[/u]</p>
+    <p>[b]*[/b] Save All - saves all open files that have been edited</p>
+    <p>[b]*[/b] Compile - triggers a compilation</p>
+    <p>[b]*[/b] Run - uses the configured "run" settings to run the project</p>
+    <p>[b]*[/b] Debug - uses the configured "debug" settings to debug the project</p>
+    <p>[b]*[/b] Settings - opens the configuration dialog</p>
+    <img>HelpIDE_Overview.png</img>
+    <p>[b]*[/b] The light-gray sashes may be dragged to resize</p>
+    <p>[b]*[/b] Double click on any light-gray sash to collapse them, double click on a collapsed sash to restore it</p>
+  </section>
+  <section name="Type Data">
+    <p>The IDE will parse an "AngelscriptAPI.h" file if found in the "bin" folder.</p>
+    <p>This is used to generate a "global" type catalog for autocompletion. You may replace the file to match your modifications to Urho3D or your project.</p>
+    <p>In addition to this static type information, any open angelscript file is parsed when open and when saved to build a "Locals" type catalog.</p>
+    <p>This "locals" catalog defers to the "global" catalog for unknown items. Preprocessor includes are included in a files local catalog.</p>
+  </section>
+  <section name="New File Types">
+    <p>New files types are implemented through "filespecs" which are located in the "filespecs" folder.</p>
+    <p>The specification contains a root XML tag called "file" whose only two attributes are "name" and "ext." The name attribute is what the user will see and the ext attribute is the file extension to use. This "file" root tag should contains CDATA that includes a template that the file should be filled with.</p>
+  </section>
+  <section name="Code snippets">
+    <p>If a folder named "snippets" exists in the directory of the IDE's executable it will be scanned for XML files to be loaded as snippets. Snippets may have "inputs" which are inserted into the snippet code using a {{mustache}} style marking. Snippets can also have "options" for which code blocks may depend on one or many options using "requires."</p>
+  </section>
+  <section name="Plugins">
+    
+  </section>
+  <section name="Debugger Basics">
+    <p>Content lkjl</p>
+  </section>
+</help>

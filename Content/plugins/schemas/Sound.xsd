@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Sound"
+    targetNamespace="http://tempuri.org/Sound.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/Sound.xsd"
+    xmlns:mstns="http://tempuri.org/Sound.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+
+  <xs:complexType name="format">
+    <xs:attribute name="frequency" type="xs:float" use="optional" />
+    <xs:attribute name="sixteenbit" type="xs:boolean" use="optional" />
+    <xs:attribute name="stereo" type="xs:boolean" use="optional" />
+  </xs:complexType>
+
+  <xs:complexType name="loop">
+    <xs:attribute name="enable" type="xs:boolean" use="optional" />
+    <xs:attribute name="start" type="xs:float" use="optional" />
+    <xs:attribute name="end" type="xs:float" use="optional" />
+  </xs:complexType>
+  
+  <xs:element name="sound">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="format" type="format" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="loop" type="loop" minOccurs="0" maxOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+</xs:schema>
